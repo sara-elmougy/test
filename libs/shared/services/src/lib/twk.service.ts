@@ -20,6 +20,18 @@ export class TWKService {
     return this.win.MOCK_TWK?.V2;
   }
 
+  getUserMobileNumber(): Promise<any> {
+    return Promise.resolve(this.TWK.getUserMobileNumber());
+  }
+
+  getUserFullName(): Promise<any> {
+    return Promise.resolve(this.TWKV2.getUserFullName());
+  }
+
+  getDeviceInfo(): Promise<any> {
+    return Promise.resolve(this.TWK.getDeviceInfo());
+  }
+
   apiLog(requestData?: any, responseData?: any): void {
     if (this.config.twkEnabled && this.TWK?.apiLog) {
       try {

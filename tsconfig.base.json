@@ -5,7 +5,10 @@
     "emitDeclarationOnly": true,
     "importHelpers": true,
     "isolatedModules": true,
-    "lib": ["es2022", "DOM"],
+    "lib": [
+      "es2022",
+      "DOM"
+    ],
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "noEmitOnError": true,
@@ -16,6 +19,22 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@tawakalna/source"]
+    "customConditions": [
+      "@tawakalna/source"
+    ],
+    "paths": {
+      "@libs": [
+        "libs"
+      ],
+      "@assets": [
+        "assets"
+      ],
+      "@twk-scripts": [
+        "assets/scripts/twkhelper"
+      ],
+      "@tawakalna/services": [
+        "libs/shared/services/src/index.ts"
+      ]
+    }
   }
 }

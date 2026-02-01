@@ -1,22 +1,16 @@
 {
   "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+  },
   "compileOnSave": false,
   "files": [],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@libs": ["libs"],
-      "@assets": ["assets"],
-      "@twk-scripts": ["assets/scripts/twkhelper"],
-      "@tawakalna/services": ["libs/shared/services/src/index.ts"]
-    }
-  },
   "references": [
     {
-      "path": "./libs/shared/services"
+      "path": "./apps/twk-app"
     },
     {
-      "path": "./apps/twk-app"
+      "path": "./libs/shared/services"
     }
   ]
 }

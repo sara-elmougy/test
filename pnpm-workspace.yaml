@@ -1,4 +1,6 @@
 packages:
   - 'apps/*'
   - 'libs/*'
-  - 'libs/shared/*'
+  - 'packages/*'
+  - 'project-2'
+  - 'apps'

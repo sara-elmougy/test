@@ -8,25 +8,19 @@ function App() {
 
   const [mobile, setMobile] = useState('');
   const [name, setName] = useState('');
-  const [deviceInfo, setDeviceInfo] = useState(null);
+  const [deviceInfo, setDeviceInfo] = useState<any>(null);
 
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        // === Get user mobile number ===
-        twkService.getUserMobileNumber().then((ret) => {
-          setMobile(ret?.result?.mobile_number);
-        });
+        const mobileRes = await twkService.getUserMobileNumber();
+        setMobile(mobileRes?.result?.mobile_number);
 
-        // === Get user full name ===
-        twkService.getUserFullName().then((ret) => {
-          setName(ret?.result?.full_name);
-        });
+        const nameRes = await twkService.getUserFullName();
+        setName(nameRes?.result?.full_name);
 
-        // === Get device info (e.g., language) ===
-        twkService.getDeviceInfo().then((ret) => {
-          setDeviceInfo({ app_language: ret.result.app_language });
-        });
+        const deviceRes = await twkService.getDeviceInfo();
+        setDeviceInfo({ app_language: deviceRes?.result?.app_language });
       } catch (error) {
         console.error('Error fetching logs:', error);
       }

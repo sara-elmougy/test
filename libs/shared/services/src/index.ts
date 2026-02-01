@@ -1,1 +1,1 @@
-export * from './lib/twk.service';
+export * from './lib/twk.service.js';
