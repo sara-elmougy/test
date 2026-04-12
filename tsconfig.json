@@ -10,9 +10,6 @@
       "path": "./apps/twk-app"
     },
     {
-      "path": "./apps/react-service-v1"
-    },
-    {
       "path": "./libs/shared/services"
     },
     {
@@ -32,9 +29,6 @@
     },
     {
       "path": "./libs/shared/usecases"
-    },
-    {
-      "path": "./apps/React_Service_v2"
     }
   ]
 }
