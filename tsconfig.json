@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./"
   },
   "compileOnSave": false,
   "files": [],
@@ -10,7 +10,31 @@
       "path": "./apps/twk-app"
     },
     {
+      "path": "./apps/react-service-v1"
+    },
+    {
       "path": "./libs/shared/services"
+    },
+    {
+      "path": "./libs/shared/hooks"
+    },
+    {
+      "path": "./libs/shared/models"
+    },
+    {
+      "path": "./libs/shared/store"
+    },
+    {
+      "path": "./libs/shared/interceptors"
+    },
+    {
+      "path": "./libs/shared/environments"
+    },
+    {
+      "path": "./libs/shared/usecases"
+    },
+    {
+      "path": "./apps/React_Service_v2"
     }
   ]
 }

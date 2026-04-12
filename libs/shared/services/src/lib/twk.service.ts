@@ -20,15 +20,35 @@ export class TWKService {
     return this.win.MOCK_TWK?.V2;
   }
 
-  getUserMobileNumber(): Promise<any> {
-    return Promise.resolve(this.TWK.getUserMobileNumber());
+  generateToken(): Promise<{ success: boolean; result: { token: string } }> {
+    return Promise.resolve(this.TWK.generateToken());
   }
 
-  getUserFullName(): Promise<any> {
+  getUserId(): Promise<{ success: boolean; result: { user_id: number } }> {
+    return Promise.resolve(this.TWK.getUserId());
+  }
+
+  getUserNationality(): Promise<{ success: boolean; result: { nationality_code: number; nationality_name_ar: string; nationality_name_en: string } }> {
+    return Promise.resolve(this.TWKV2.getUserNationality());
+  }
+
+  getUserGender(): Promise<{ success: boolean; result: { gender: number } }> {
+    return Promise.resolve(this.TWK.getUserGender());
+  }
+
+  getUserBirthDate(): Promise<{ success: boolean; result: { birth_date: string } }> {
+    return Promise.resolve(this.TWK.getUserBirthDate());
+  }
+
+  getUserFullName(): Promise<{ success: boolean; result: { full_name_ar: string; full_name_en: string } }> {
     return Promise.resolve(this.TWKV2.getUserFullName());
   }
 
-  getDeviceInfo(): Promise<any> {
+  getUserMobileNumber(): Promise<{ success: boolean; result: { mobile_number: string } }> {
+    return Promise.resolve(this.TWK.getUserMobileNumber());
+  }
+
+  getDeviceInfo(): Promise<{ success: boolean; result: { app_language: string; appearance: number } }> {
     return Promise.resolve(this.TWK.getDeviceInfo());
   }
 

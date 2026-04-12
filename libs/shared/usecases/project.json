@@ -1,0 +1,8 @@
+{
+  "name": "usecases",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/usecases/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {}
+}
