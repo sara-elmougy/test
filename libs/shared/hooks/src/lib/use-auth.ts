@@ -20,8 +20,7 @@ export function useAuth(): UseAuthResult {
       try {
         const response = await mockLogin({
           twkEnabled: environment.twkEnabled,
-          apiUrl: environment.apiUrl,
-          appId: environment.appId,
+          apiUrl: environment.apiUrl
         });
 
         if (response?.isSuccess && response?.responseDetails) {
