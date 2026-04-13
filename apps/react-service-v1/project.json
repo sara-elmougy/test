@@ -47,24 +47,30 @@
     },
     "build:twk-win": {
       "executor": "nx:run-commands",
+      "dependsOn": ["build"],
       "options": {
         "commands": [
-          "nx build react-service-v1",
           "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
           "cd dist/apps/react-service-v1 && tar -a -c -f ../../builds/react-service-v1.zip *"
         ],
-        "parallel": false
+        "parallel": false,
+        "env": {
+          "NODE_OPTIONS": "--no-deprecation"
+        }
       }
     },
     "build:twk-mac": {
       "executor": "nx:run-commands",
+      "dependsOn": ["build"],
       "options": {
         "commands": [
-          "nx build react-service-v1",
           "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
           "cd dist/apps/react-service-v1 && zip -r ../../builds/react-service-v1.zip ."
         ],
-        "parallel": false
+        "parallel": false,
+        "env": {
+          "NODE_OPTIONS": "--no-deprecation"
+        }
       }
     },
     "lint": {

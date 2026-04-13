@@ -1,4 +1,4 @@
-import type { Plugin, ViteDevServer } from 'vite';
+import type { Plugin, ResolvedConfig, ViteDevServer } from 'vite';
 import type { IncomingMessage, ServerResponse } from 'http';
 import path from 'path';
 import fs from 'fs';
@@ -22,11 +22,38 @@ export function workspaceStaticPlugin(workspaceRoot: string): Plugin {
     };
   }
 
+  function copyDirSync(src: string, dest: string) {
+    if (!fs.existsSync(src)) return;
+    fs.mkdirSync(dest, { recursive: true });
+    for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
+      const srcPath = path.join(src, entry.name);
+      const destPath = path.join(dest, entry.name);
+      if (entry.isDirectory()) {
+        copyDirSync(srcPath, destPath);
+      } else {
+        fs.copyFileSync(srcPath, destPath);
+      }
+    }
+  }
+
+  let resolvedConfig: ResolvedConfig;
+
   return {
     name: 'workspace-static',
+    configResolved(config) {
+      resolvedConfig = config;
+    },
     configureServer(server: ViteDevServer) {
       for (const [urlPath, dir] of Object.entries(staticPaths)) {
         server.middlewares.use(urlPath, serveStatic(dir));
+      }
+    },
+    closeBundle() {
+      if (resolvedConfig.command !== 'build') return;
+      const outDir = path.resolve(resolvedConfig.root, resolvedConfig.build.outDir);
+      for (const [urlPath, srcDir] of Object.entries(staticPaths)) {
+        const destDir = path.join(outDir, urlPath.replace(/^\//, ''));
+        copyDirSync(srcDir, destDir);
       }
     },
   };

@@ -47,24 +47,30 @@
     },
     "build:twk-win": {
       "executor": "nx:run-commands",
+      "dependsOn": ["build"],
       "options": {
         "commands": [
-          "nx build profile-demo",
           "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
           "cd dist/apps/profile-demo && tar -a -c -f ../../builds/profile-demo.zip *"
         ],
-        "parallel": false
+        "parallel": false,
+        "env": {
+          "NODE_OPTIONS": "--no-deprecation"
+        }
       }
     },
     "build:twk-mac": {
       "executor": "nx:run-commands",
+      "dependsOn": ["build"],
       "options": {
         "commands": [
-          "nx build profile-demo",
           "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
           "cd dist/apps/profile-demo && zip -r ../../builds/profile-demo.zip ."
         ],
-        "parallel": false
+        "parallel": false,
+        "env": {
+          "NODE_OPTIONS": "--no-deprecation"
+        }
       }
     },
     "lint": {

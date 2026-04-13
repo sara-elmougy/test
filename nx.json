@@ -12,7 +12,6 @@
     ],
     "sharedGlobals": []
   },
-  "nxCloudId": "697607358eb2be6a3e9c23a5",
   "generators": {
     "@nx/react": {
       "application": {

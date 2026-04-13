@@ -48,7 +48,7 @@ export interface TawakalnaPersonDto {
 }
 
 export interface VerifyTawakalnaLoginPayload {
-  appId: string;
+  appId?: string;
   token: string;
   nationalId: string;
   tawakalnaPersonDto: TawakalnaPersonDto;
