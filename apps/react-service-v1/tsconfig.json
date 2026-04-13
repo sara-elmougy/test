@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@features/*": ["./src/features/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@i18n/*": ["./src/i18n/*"],
+      "@tawakalna/services": ["../../libs/shared/services/src/index.ts"],
+      "@tawakalna/hooks": ["../../libs/shared/hooks/src/index.ts"],
+      "@tawakalna/store": ["../../libs/shared/store/src/index.ts"],
+      "@tawakalna/interceptors": ["../../libs/shared/interceptors/src/index.ts"],
+      "@tawakalna/models": ["../../libs/shared/models/src/index.ts"]
+    }
+  }
+}

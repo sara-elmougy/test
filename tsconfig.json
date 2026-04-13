@@ -13,6 +13,9 @@
       "path": "./libs/shared/services"
     },
     {
+      "path": "./apps/react-service-v1"
+    },
+    {
       "path": "./libs/shared/hooks"
     },
     {
