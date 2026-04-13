@@ -5,10 +5,11 @@ import type { VerifyTawakalnaLoginResponse } from '@tawakalna/models';
 interface MockLoginOptions {
   twkEnabled: boolean;
   apiUrl: string;
+  appId: string;
 }
 
 export async function mockLogin(options: MockLoginOptions): Promise<VerifyTawakalnaLoginResponse> {
-  const { twkEnabled, apiUrl } = options;
+  const { twkEnabled, apiUrl, appId } = options;
   const twkService = new TWKService({ twkEnabled });
 
   // Step 1: Gather all TWK data in parallel
@@ -51,6 +52,7 @@ export async function mockLogin(options: MockLoginOptions): Promise<VerifyTawaka
   localStorage.setItem('userName', String(isLangAr ? arFullName : enFullName));
 
   const payload = {
+    appId,
     token: tokenRes.result.token,
     nationalId: String(userIdRes.result.user_id),
     tawakalnaPersonDto: {
