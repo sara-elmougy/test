@@ -1,0 +1,19 @@
+{
+  "app": {
+    "loading": "Loading...",
+    "error": "An error occurred, please try again"
+  },
+  "auth": {
+    "loading": "Authenticating..."
+  },
+  "profile": {
+    "loading": "Loading profile...",
+    "title": "Profile",
+    "subtitle": "Registered personal information",
+    "fullNameAr": "Full Name (AR)",
+    "fullNameEn": "Full Name (EN)",
+    "nationalId": "National ID",
+    "mobileNumber": "Mobile Number",
+    "birthDate": "Birth Date"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "types": ["vite/client", "node"],
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
+  "references": [
+    { "path": "../../libs/shared/interceptors/tsconfig.lib.json" },
+    { "path": "../../libs/shared/hooks/tsconfig.lib.json" },
+    { "path": "../../libs/shared/models/tsconfig.lib.json" },
+    { "path": "../../libs/shared/store/tsconfig.lib.json" },
+    { "path": "../../libs/shared/usecases/tsconfig.lib.json" },
+    { "path": "../../libs/shared/environments/tsconfig.lib.json" },
+    { "path": "../../libs/shared/services/tsconfig.lib.json" }
+  ]
+}

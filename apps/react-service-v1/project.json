@@ -27,7 +27,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "apps/react-service-v1/dist"
+        "outputPath": "dist/apps/react-service-v1"
       },
       "configurations": {
         "development": {
@@ -43,6 +43,28 @@
       "defaultConfiguration": "production",
       "options": {
         "buildTarget": "react-service-v1:build"
+      }
+    },
+    "build:twk-win": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build react-service-v1",
+          "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
+          "cd dist/apps/react-service-v1 && tar -a -c -f ../../builds/react-service-v1.zip *"
+        ],
+        "parallel": false
+      }
+    },
+    "build:twk-mac": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build react-service-v1",
+          "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
+          "cd dist/apps/react-service-v1 && zip -r ../../builds/react-service-v1.zip ."
+        ],
+        "parallel": false
       }
     },
     "lint": {

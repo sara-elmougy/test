@@ -8,6 +8,8 @@ export class TWKService {
 
   constructor(private config: TWKConfig) {
     this.win = config.windowRef ?? window;
+    console.log(config);
+    
   }
 
   private get TWK(): any {

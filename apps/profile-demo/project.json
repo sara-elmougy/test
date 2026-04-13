@@ -1,0 +1,81 @@
+{
+  "name": "profile-demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/profile-demo/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "profile-demo:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "profile-demo:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "profile-demo:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/profile-demo"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "profile-demo:build"
+      }
+    },
+    "build:twk-win": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build profile-demo",
+          "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
+          "cd dist/apps/profile-demo && tar -a -c -f ../../builds/profile-demo.zip *"
+        ],
+        "parallel": false
+      }
+    },
+    "build:twk-mac": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build profile-demo",
+          "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
+          "cd dist/apps/profile-demo && zip -r ../../builds/profile-demo.zip ."
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/apps/profile-demo"],
+      "options": {
+        "reportsDirectory": "../../coverage/apps/profile-demo"
+      }
+    }
+  }
+}

@@ -1,1 +1,1 @@
-export type { TWKToken, TWKResponse, TWKVerificationData, TWKVerificationResponse } from '@tawakalna/models';
+export type { TWKToken, TWKResponse, VerifyTawakalnaLoginPayload, VerifyTawakalnaLoginResponse } from '@tawakalna/models';

@@ -8,6 +8,9 @@
     }
   ],
   "compilerOptions": {
+    "composite": false,
+    "declarationMap": false,
+    "emitDeclarationOnly": false,
     "baseUrl": "./",
     "paths": {
       "@app/*": ["./src/app/*"],
@@ -19,7 +22,9 @@
       "@tawakalna/hooks": ["../../libs/shared/hooks/src/index.ts"],
       "@tawakalna/store": ["../../libs/shared/store/src/index.ts"],
       "@tawakalna/interceptors": ["../../libs/shared/interceptors/src/index.ts"],
-      "@tawakalna/models": ["../../libs/shared/models/src/index.ts"]
+      "@tawakalna/models": ["../../libs/shared/models/src/index.ts"],
+      "@tawakalna/environments": ["../../libs/shared/environments/src/index.ts"],
+      "@tawakalna/usecases": ["../../libs/shared/usecases/src/index.ts"]
     }
   }
 }

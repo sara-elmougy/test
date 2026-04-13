@@ -1,0 +1,13 @@
+{
+  "app": {
+    "loading": "Loading...",
+    "error": "An error occurred, please try again"
+  },
+  "auth": {
+    "loading": "Authenticating..."
+  },
+  "home": {
+    "title": "React Service V2",
+    "welcome": "Welcome"
+  }
+}

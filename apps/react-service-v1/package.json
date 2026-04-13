@@ -1,8 +1,5 @@
 {
   "name": "@tawakalna/react-service-v1",
   "version": "0.0.1",
-  "private": true,
-  "nx": {
-    "projectType": "application"
-  }
+  "private": true
 }

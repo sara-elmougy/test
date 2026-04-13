@@ -1,0 +1,81 @@
+{
+  "name": "react-service-v2",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/react-service-v2/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "react-service-v2:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "react-service-v2:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "react-service-v2:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/react-service-v2"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "react-service-v2:build"
+      }
+    },
+    "build:twk-win": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build react-service-v2",
+          "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
+          "cd dist/apps/react-service-v2 && tar -a -c -f ../../builds/react-service-v2.zip *"
+        ],
+        "parallel": false
+      }
+    },
+    "build:twk-mac": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build react-service-v2",
+          "node -e \"const fs=require('fs'); fs.mkdirSync('dist/builds', {recursive:true})\"",
+          "cd dist/apps/react-service-v2 && zip -r ../../builds/react-service-v2.zip ."
+        ],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/apps/react-service-v2"],
+      "options": {
+        "reportsDirectory": "../../coverage/apps/react-service-v2"
+      }
+    }
+  }
+}

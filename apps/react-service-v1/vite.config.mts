@@ -1,42 +1,11 @@
 /// <reference types='vitest' />
-import { defineConfig, type ViteDevServer, type Plugin } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import type { IncomingMessage, ServerResponse } from 'http';
-import path, { resolve } from 'path';
-import fs from 'fs';
+import { resolve } from 'path';
+import { workspaceStaticPlugin, createSharedAliases } from '../../libs/shared/config/vite.shared';
 
-const libsRoot = resolve(__dirname, '../../libs/shared');
-
-// Serves workspace-level shared assets at /scripts/ and /etec/
-function workspaceStaticPlugin(): Plugin {
-  const assetsDir = path.resolve(__dirname, '../../assets');
-  const staticPaths: Record<string, string> = {
-    '/scripts': path.join(assetsDir, 'scripts/twkhelper'),
-    '/etec': path.join(assetsDir, 'etec'),
-    '/assets/twk-profiles': path.join(assetsDir, 'twk-profiles'),
-  };
-
-  function serveStatic(baseDir: string) {
-    return (req: IncomingMessage, res: ServerResponse, next: () => void) => {
-      const filePath = path.join(baseDir, req.url ?? '');
-      if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-        fs.createReadStream(filePath).pipe(res);
-      } else {
-        next();
-      }
-    };
-  }
-
-  return {
-    name: 'workspace-static',
-    configureServer(server: ViteDevServer) {
-      for (const [urlPath, dir] of Object.entries(staticPaths)) {
-        server.middlewares.use(urlPath, serveStatic(dir));
-      }
-    },
-  };
-}
+const workspaceRoot = resolve(__dirname, '../..');
 
 export default defineConfig(() => ({
   root: __dirname,
@@ -49,21 +18,13 @@ export default defineConfig(() => ({
     port: 3000,
     host: 'localhost',
   },
-  plugins: [react(), tsconfigPaths(), workspaceStaticPlugin()],
+  plugins: [react(), tsconfigPaths(), workspaceStaticPlugin(workspaceRoot)],
   resolve: {
-    alias: {
-      '@tawakalna/services': resolve(libsRoot, 'services/src/index.ts'),
-      '@tawakalna/hooks': resolve(libsRoot, 'hooks/src/index.ts'),
-      '@tawakalna/models': resolve(libsRoot, 'models/src/index.ts'),
-      '@tawakalna/store': resolve(libsRoot, 'store/src/index.ts'),
-      '@tawakalna/interceptors': resolve(libsRoot, 'interceptors/src/index.ts'),
-      '@tawakalna/environments': resolve(libsRoot, 'environments/src/index.ts'),
-      '@tawakalna/usecases': resolve(libsRoot, 'usecases/src/index.ts'),
-    },
+    alias: createSharedAliases(workspaceRoot),
   },
   base: './',
   build: {
-    outDir: './dist',
+    outDir: '../../dist/apps/react-service-v1',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

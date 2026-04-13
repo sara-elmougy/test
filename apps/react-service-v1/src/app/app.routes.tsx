@@ -1,8 +1,8 @@
-import { createBrowserRouter } from 'react-router-dom';
+import type { RouteObject } from 'react-router-dom';
 import AuthPage from '@features/auth/pages/auth.page';
 import HomePage from '@features/home/pages/home.page';
 
-export const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: '/',
     element: <AuthPage />,
@@ -11,4 +11,4 @@ export const router = createBrowserRouter([
     path: '/home',
     element: <HomePage />,
   },
-]);
+];

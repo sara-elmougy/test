@@ -2,7 +2,10 @@
   "name": "@org/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "affected:build-win": "nx affected -t build:twk-win --base=develop",
+    "affected:build-mac": "nx affected -t build:twk-mac --base=develop"
+  },
   "private": true,
   "devDependencies": {
     "@eslint/js": "^9.8.0",

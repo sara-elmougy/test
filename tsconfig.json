@@ -32,6 +32,9 @@
     },
     {
       "path": "./libs/shared/usecases"
+    },
+    {
+      "path": "./apps/react-service-v2"
     }
   ]
 }
