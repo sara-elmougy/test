@@ -913,7 +913,7 @@ window.MOCK_TWK = {
         });
     },
     getUserEmail: function () {
-        return httpHelper('/user_data/email');
+        return httpHelper('user_data/email');
     },
     getUserIqamaType: function () {
         return httpHelper('/user_data/iqama_type');
